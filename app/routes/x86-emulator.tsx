@@ -39,7 +39,6 @@ function isSafeUrl(value: string) {
 }
 
 export default function X86Emulator() {
-	const [v86ScriptUrl, setV86ScriptUrl] = useState(DEFAULT_V86_SCRIPT);
 	const [biosUrl, setBiosUrl] = useState("");
 	const [vgaBiosUrl, setVgaBiosUrl] = useState("");
 	const [diskUrl, setDiskUrl] = useState("");
@@ -100,9 +99,6 @@ export default function X86Emulator() {
 		if (window.V86Starter) {
 			return;
 		}
-		if (!isSafeUrl(v86ScriptUrl.trim())) {
-			throw new Error("Enter a valid v86 script URL using http(s).");
-		}
 
 		await new Promise<void>((resolve, reject) => {
 			if (scriptRef.current) {
@@ -110,7 +106,7 @@ export default function X86Emulator() {
 				scriptRef.current = null;
 			}
 			const script = document.createElement("script");
-			script.src = v86ScriptUrl.trim();
+			script.src = DEFAULT_V86_SCRIPT;
 			script.async = true;
 			script.crossOrigin = "anonymous";
 			script.onload = () => resolve();
@@ -214,19 +210,9 @@ export default function X86Emulator() {
 
 			<section className="grid gap-4 xl:grid-cols-[1.1fr_1.9fr]">
 				<form className="space-y-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900" aria-label="x86 emulator configuration">
-					<div>
-						<label htmlFor="v86-script" className="block text-sm font-medium">
-							v86 script URL
-						</label>
-						<input
-							id="v86-script"
-							type="url"
-							value={v86ScriptUrl}
-							onChange={(event) => setV86ScriptUrl(event.target.value)}
-							className="mt-2 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950"
-							placeholder={DEFAULT_V86_SCRIPT}
-						/>
-					</div>
+					<p className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-xs text-gray-700 dark:border-gray-700 dark:bg-gray-950/60 dark:text-gray-300">
+						v86 runtime source: <span className="font-mono">{DEFAULT_V86_SCRIPT}</span>
+					</p>
 					<div>
 						<label htmlFor="bios-url" className="block text-sm font-medium">
 							BIOS URL
