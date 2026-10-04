@@ -18,7 +18,14 @@ A modern, production-ready template for building full-stack React applications u
 - 🎉 TailwindCSS for styling
 - 📖 [React Router docs](https://reactrouter.com/)
 - 🔎 Built-in Observability to monitor your Worker
+- 🔌 Browser-side Serial Monitor page (Web Serial API, when supported)
+- 🖥️ Browser-side x86 emulator integration boundary for v86/copy.sh workflows
 <!-- dash-content-end -->
+
+## MyHub tools additions
+
+- **Serial Monitor (`/serial-monitor`)**: request/select serial ports, choose baud rates, connect/disconnect, send text, clear output, and monitor incoming lines with timestamps. The monitor is client-only and gracefully reports unsupported browsers or denied permissions.
+- **x86 Emulator (`/x86-emulator`)**: configure v86 runtime script + BIOS/VGA BIOS + disk image source (URL or local upload), then start/stop/run/reset in a contained viewport. This integration expects user-provided assets with proper CORS/range support for larger images.
 
 ## Getting Started
 

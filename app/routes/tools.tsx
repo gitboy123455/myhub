@@ -1,4 +1,4 @@
-import { type MetaFunction } from "react-router";
+import { Link, type MetaFunction } from "react-router";
 
 export const meta: MetaFunction = () => [
 	{ title: "MyHub | Tools" },
@@ -23,6 +23,18 @@ const tools = [
 		name: "Release Checklist",
 		description: "Validate docs, demos, and test notes before sharing project milestones.",
 		status: "Draft",
+	},
+	{
+		name: "Serial Monitor",
+		description: "Connect to supported serial devices from the browser to stream logs and send commands.",
+		status: "New",
+		href: "/serial-monitor",
+	},
+	{
+		name: "x86 Emulator",
+		description: "Configure and run v86-based browser emulation using local or hosted BIOS and disk images.",
+		status: "Beta",
+		href: "/x86-emulator",
 	},
 ];
 
@@ -49,6 +61,14 @@ export default function Tools() {
 							</span>
 						</div>
 						<p className="mt-3 text-sm leading-6 text-gray-700 dark:text-gray-300">{tool.description}</p>
+						{tool.href ? (
+							<Link
+								to={tool.href}
+								className="mt-4 inline-flex rounded-md border border-gray-300 px-3 py-2 text-xs font-semibold outline-none motion-safe:transition hover:border-indigo-400 hover:text-indigo-600 focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-gray-700 dark:hover:border-indigo-300 dark:hover:text-indigo-200"
+							>
+								Open tool
+							</Link>
+						) : null}
 					</article>
 				))}
 			</section>

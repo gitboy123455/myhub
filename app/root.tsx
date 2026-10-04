@@ -17,6 +17,8 @@ const navigationItems = [
 	{ to: "/", label: "Dashboard" },
 	{ to: "/about", label: "About" },
 	{ to: "/tools", label: "Tools" },
+	{ to: "/serial-monitor", label: "Serial Monitor" },
+	{ to: "/x86-emulator", label: "x86 Emulator" },
 	{ to: "/settings", label: "Settings" },
 ];
 
